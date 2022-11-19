@@ -16,6 +16,7 @@ const Patient = new mongoose.Schema({
 // Note that Mongoose middleware will be executed as usual
 Patient.pre('save', function (next) {
   console.log('A patient was saved to Mongo: %s.', this.get('client'));
+  this.set('time', new Date())
   next();
 });
 
@@ -45,15 +46,11 @@ var data = [
 ];
 
 const main = async () => {
-  // Clear the database of old vegetables
   await mongoose.model('patient').deleteMany();
   await mongoose.model('patient').create(data);
 
-
-  // Create the API routes
   baucis.rest('patient');
 
-  // Create the app and listen for API requests
   var app = express();
   app.use('/api', baucis());
   app.listen(process.env.SERVER_PORT);
