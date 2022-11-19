@@ -2,10 +2,10 @@ import React from 'react';
 
 export type EventsProps = {}
 
-export default function Events({}: EventsProps) {
+export default function Activities({}: EventsProps) {
     return (
         <div className="Events">
-            Events go here
+            Activities go here
         </div>
     );
 }

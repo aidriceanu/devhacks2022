@@ -19,22 +19,14 @@ const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 export const Nav = () => {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-    const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);
-    };
-    const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorElUser(event.currentTarget);
     };
 
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
         return true;
-    };
-
-    const handleCloseUserMenu = () => {
-        setAnchorElUser(null);
     };
 
     return (
@@ -57,7 +49,7 @@ export const Nav = () => {
                             textDecoration: 'none',
                         }}
                     >
-                        ASD & ADHD Tracker
+                        MyASD
                     </Typography>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -99,9 +91,9 @@ export const Nav = () => {
                                     <Typography textAlign="center">Evaluation</Typography>
                                 </NavLink>
                             </MenuItem>
-                            <MenuItem key={"events"} onClick={handleCloseNavMenu}>
-                                <NavLink to={"/events"}>
-                                    <Typography textAlign="center">Events</Typography>
+                            <MenuItem key={"activities"} onClick={handleCloseNavMenu}>
+                                <NavLink to={"/activities"}>
+                                    <Typography textAlign="center">Activities</Typography>
                                 </NavLink>
                             </MenuItem>
                         </Menu>
@@ -123,7 +115,7 @@ export const Nav = () => {
                             textDecoration: 'none',
                         }}
                     >
-                        ASD & ADHD Tracker
+                        MyASD
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         <NavLink to={"/"}>
@@ -142,12 +134,12 @@ export const Nav = () => {
                                 Evaluation
                             </Button>
                         </NavLink>
-                        <NavLink to={"/events"}>
+                        <NavLink to={"/activities"}>
                             <Button
                                 onClick={handleCloseNavMenu}
                                 sx={{ my: 2, color: 'white', display: 'block' }}
                             >
-                                Events
+                                Activities
                             </Button>
                         </NavLink>
                     </Box>

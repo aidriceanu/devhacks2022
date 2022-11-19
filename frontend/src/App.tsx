@@ -2,9 +2,9 @@ import React from 'react';
 import './App.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Stats from "./components/Stats/Stats";
-import Evaluation from "./components/Evaluation/Evaluation";
 import {Nav} from "./components/Nav/Nav";
-import Events from "./components/Events/Events";
+import Activities from "./components/Activities/Activities";
+import {EvaluationWithFormik} from "./components/Evaluation/EvaluationWithFormik";
 
 function App() {
   return (
@@ -13,8 +13,8 @@ function App() {
           <div className="container">
               <Routes>
                   <Route path="/" element={<Stats />} />
-                  <Route path="/evaluation" element={<Evaluation />} />
-                  <Route path="/events" element={<Events />} />
+                  <Route path="/evaluation" element={<EvaluationWithFormik />} />
+                  <Route path="/activities" element={<Activities />} />
               </Routes>
           </div>
       </BrowserRouter>
