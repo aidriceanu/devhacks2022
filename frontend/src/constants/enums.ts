@@ -11,10 +11,3 @@ export enum Evaluator {
     NANNY = "nanny",
     RELATIVE = "relative",
 }
-
-export const activity = {
-    "washed-his-hands": 'Washed his hands.',
-    "ate-today": "Ate today.",
-    "played-with-syster": "Played with sister.",
-    "walk-in-the-park": "Walk in the park",
-};

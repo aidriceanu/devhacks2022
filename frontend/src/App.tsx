@@ -3,8 +3,9 @@ import './App.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Stats from "./components/Stats/Stats";
 import {Nav} from "./components/Nav/Nav";
-import Activities from "./components/Activities/Activities";
+import Activity from "./components/Activities/Activity";
 import {EvaluationWithFormik} from "./components/Evaluation/EvaluationWithFormik";
+import {ActivityWithFormik} from "./components/Activities/ActivityWithFormik";
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
               <Routes>
                   <Route path="/" element={<Stats />} />
                   <Route path="/evaluation" element={<EvaluationWithFormik />} />
-                  <Route path="/activities" element={<Activities />} />
+                  <Route path="/activities" element={<ActivityWithFormik />} />
               </Routes>
           </div>
       </BrowserRouter>

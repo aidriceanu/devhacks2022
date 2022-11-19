@@ -1,50 +1,21 @@
 import React from 'react';
-import {find, get} from 'lodash';
-import {Form, FormikProps} from 'formik';
+import {Form, FormikProps} from "formik";
 import Container from "@mui/material/Container";
-import LoadingButton from "@mui/lab/LoadingButton";
-import {Box, Button, FormGroup, Input, InputLabel, Paper, Slide, Slider, Typography} from "@mui/material";
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import {InputLabel, Paper, Slider, Typography} from "@mui/material";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 import {Evaluator} from "../../constants/enums";
+import {get} from "lodash";
+import MenuItem from "@mui/material/MenuItem";
+import LoadingButton from "@mui/lab/LoadingButton";
+import {activity} from "../../constants/constants";
 
-export type FormProps = {}
-
-const marks = [
-    {
-        value: 1,
-        label: 'Really Bad',
-    },
-    {
-        value: 2,
-        label: 'Bad',
-    },
-    {
-        value: 3,
-        label: 'Uneventfull',
-    },
-    {
-        value: 4,
-        label: 'Good',
-    },
-    {
-        value: 5,
-        label: "Really Good"
-    }
-];
-
-
-const valuetext = (value: number): string => {
-    const mark = find(marks, { value }) || {} as { label: string};
-    return mark?.label || "";
+export interface ActivityValues {
+    activity?: string;
+    grade: number
 }
 
-export interface EvaluationValues {
-    mood: number;
-}
-
-export default function Evaluation({
+export default function Activity({
                                        values,
                                        errors,
                                        touched,
@@ -52,41 +23,37 @@ export default function Evaluation({
                                        handleBlur,
                                        handleSubmit,
                                        isSubmitting,
-                                        setFieldValue,
-                                   }: FormikProps<EvaluationValues>) {
+                                       setFieldValue,
+                                   }: FormikProps<ActivityValues>) {
     return (
         <Container>
             <Paper elevation={3} style={{padding: "20px", marginTop: "30px"}}>
                 <Form onSubmit={handleSubmit}>
                     <FormControl fullWidth>
-                        <InputLabel id="evaluator-label">Evaluator</InputLabel>
+                        <InputLabel id="evaluator-label">Activity</InputLabel>
                         <Select
                             labelId="evaluator-label"
                             id="evaluator"
-                            name={'evaluator'}
+                            name={'activity'}
                             label="Age"
                             onChange={handleChange}
                             required={true}
                         >
-                            {Object.keys(Evaluator as { [s: number]: string }).map((key) => {
-                                const value:string = get(Evaluator, key, '');
-
+                            {Object.values(activity).map((value) => {
                                 return (
-                                    value && <MenuItem value={value}>{key}</MenuItem>
+                                    value && <MenuItem value={value}>{value}</MenuItem>
                                 );
                             })}
                         </Select>
                     </FormControl>
                     <FormControl className={'margin-top-10'} fullWidth>
-                        <Typography gutterBottom>General Mood</Typography>
+                        <Typography gutterBottom>Activity Grade</Typography>
                         <Slider
                             aria-label="Overall behaviour"
-                            defaultValue={values.mood}
-                            getAriaValueText={valuetext}
+                            defaultValue={values.grade}
                             valueLabelDisplay="on"
-                            onChange={(event, value) => setFieldValue('mood', value)}
+                            onChange={(event, value) => setFieldValue('grade', value)}
                             step={1}
-                            marks={marks}
                             min={1}
                             max={5}
                         />

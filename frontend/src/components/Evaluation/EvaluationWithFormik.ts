@@ -14,5 +14,6 @@ export const EvaluationWithFormik = withFormik<EvaluationProps, EvaluationValues
     },
     handleSubmit: (values:EvaluationValues) => {
         alert(JSON.stringify(values));
+        return false;
     }
 })(Evaluation);
