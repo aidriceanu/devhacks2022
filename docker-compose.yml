@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    image: devhacks2022/api
+    depends_on:
+      - db
+    ports:
+      - 3000:3000
+  db:
+    image: mongo:6.0.3
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: devhacks
+      MONGO_INITDB_ROOT_PASSWORD: devhacks
+      MONGO_INITDB_DATABASE: devhacks
+    volumes:
+      - ./db:/data/db
+    ports:
+      - 27017:27017
