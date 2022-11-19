@@ -35,3 +35,24 @@ services:
       - ./db:/data/db
     ports:
       - 27017:27017
+  grafana:
+    image: grafana/grafana:9.2.5
+    restart: always
+    depends_on:
+      - prometheus
+    volumes:
+      - ./grafana/datasources:/etc/grafana/provisioning/datasources
+      - grafana_data:/var/lib/grafana
+    ports:
+      - 3002:3000
+  prometheus:
+    image: bitnami/prometheus:2.40.2
+    restart: always
+    volumes:
+      - prometheus_data:/opt/bitnami/prometheus/data
+    ports:
+      - 9090:9090
+
+volumes:
+  grafana_data: {}
+  prometheus_data: {}
