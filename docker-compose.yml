@@ -1,6 +1,17 @@
 version: '3.8'
 
 services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: devhacks2022/frontend
+    depends_on:
+      - api
+    environment:
+      REACT_APP_API_HOST: http://127.0.0.1:3000
+    ports:
+      - 8080:80
   api:
     build:
       context: ./api
@@ -8,6 +19,9 @@ services:
     image: devhacks2022/api
     depends_on:
       - db
+    environment:
+      SERVER_PORT: 3000
+      DB_URI: mongodb://devhacks:devhacks@127.0.0.1:27017
     ports:
       - 3000:3000
   db:
