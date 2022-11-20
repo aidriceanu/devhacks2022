@@ -105,7 +105,7 @@ export default function Evaluation({
                             return (
                                 <FormControlLabel className={'margin-left-20'}
                                       control={<Checkbox
-                                          onChange={(event, value) => setFieldValue(`bad.${situationKey}`, value)}
+                                          onChange={(event, value) => setFieldValue(`good.${situationKey}`, value)}
                                       />} label={situation} />
                             );
                         })}

@@ -104,7 +104,7 @@ curl --request POST \
 
 ```bash
 curl --request GET \
-  --url http://127.0.0.1:3000/api/evaluations \
+  --url http://127.0.0.1:3001/api/evaluations \
   --header 'Content-Type: application/json'
 ```
 
@@ -114,7 +114,7 @@ curl --request GET \
 
 ```bash
 curl --request POST \
-  --url http://127.0.0.1:3000/api/evaluations \
+  --url http://127.0.0.1:3001/api/evaluations \
   --header 'Content-Type: application/json' \
   --data '{
     "evaluator": "Teacher",
@@ -129,7 +129,7 @@ curl --request POST \
 
 ```bash
 curl --request GET \
-  --url http://127.0.0.1:3000/api/situations \
+  --url http://127.0.0.1:3001/api/situations \
   --header 'Content-Type: application/json'
 ```
 
@@ -139,7 +139,7 @@ curl --request GET \
 
 ```bash
 curl --request POST \
-  --url http://127.0.0.1:3000/api/situations \
+  --url http://127.0.0.1:3001/api/situations \
   --header 'Content-Type: application/json' \
   --data '{
     "evaluator": "Teacher",
@@ -155,7 +155,7 @@ curl --request POST \
 
 ```bash
 curl --request GET \
-  --url http://127.0.0.1:3000/api/activities \
+  --url http://127.0.0.1:3001/api/activities \
   --header 'Content-Type: application/json'
 ```
 
@@ -165,7 +165,7 @@ curl --request GET \
 
 ```bash
 curl --request POST \
-  --url http://127.0.0.1:3000/api/activities \
+  --url http://127.0.0.1:3001/api/activities \
   --header 'Content-Type: application/json' \
   --data '{
     "evaluator": "Teacher",
