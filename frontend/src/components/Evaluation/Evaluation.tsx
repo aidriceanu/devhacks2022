@@ -74,12 +74,13 @@ export default function Evaluation({
                             label="Age"
                             onChange={handleChange}
                             required={true}
+                            defaultValue={''}
                         >
                             {Object.keys(Evaluator as { [s: number]: string }).map((key) => {
                                 const value:string = get(Evaluator, key, '');
 
                                 return (
-                                    value && <MenuItem value={value}>{key}</MenuItem>
+                                    value && <MenuItem value={value} key={key}>{key}</MenuItem>
                                 );
                             })}
                         </Select>
@@ -103,7 +104,7 @@ export default function Evaluation({
                         {Object.keys(situations.good).map(situationKey => {
                             const situation: string = get(situations, ['good', situationKey]);
                             return (
-                                <FormControlLabel className={'margin-left-20'}
+                                <FormControlLabel className={'margin-left-20'} key={situationKey}
                                       control={<Checkbox
                                           onChange={(event, value) => setFieldValue(`good.${situationKey}`, value)}
                                       />} label={situation} />
@@ -115,7 +116,7 @@ export default function Evaluation({
                         {Object.keys(situations.bad).map(situationKey => {
                             const situation: string = get(situations, ['bad', situationKey]);
                             return (
-                                <FormControlLabel className={'margin-left-20'}
+                                <FormControlLabel className={'margin-left-20'} key={situationKey}
                                                   control={<Checkbox
                                                       onChange={(event, value) => setFieldValue(`bad.${situationKey}`, value)}
                                                   />} label={situation} />

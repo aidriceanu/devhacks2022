@@ -38,12 +38,13 @@ export default function Activity({
                             label="Age"
                             onChange={handleChange}
                             required={true}
+                            defaultValue={''}
                         >
                             {Object.keys(Evaluator as { [s: number]: string }).map((key) => {
                                 const value:string = get(Evaluator, key, '');
 
                                 return (
-                                    value && <MenuItem value={value}>{key}</MenuItem>
+                                    value && <MenuItem value={value} key={key}>{key}</MenuItem>
                                 );
                             })}
                         </Select>
