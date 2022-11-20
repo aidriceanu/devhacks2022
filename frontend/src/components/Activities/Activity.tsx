@@ -4,8 +4,6 @@ import Container from "@mui/material/Container";
 import {InputLabel, Paper, Slider, Typography} from "@mui/material";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import {Evaluator} from "../../constants/enums";
-import {get} from "lodash";
 import MenuItem from "@mui/material/MenuItem";
 import LoadingButton from "@mui/lab/LoadingButton";
 import {activity} from "../../constants/constants";

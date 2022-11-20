@@ -3,13 +3,20 @@ import {find, get} from 'lodash';
 import {Form, FormikProps} from 'formik';
 import Container from "@mui/material/Container";
 import LoadingButton from "@mui/lab/LoadingButton";
-import {Box, Button, FormGroup, Input, InputLabel, Paper, Slide, Slider, Typography} from "@mui/material";
+import {
+    Checkbox,
+    FormControlLabel,
+    FormGroup,
+    InputLabel,
+    Paper,
+    Slider,
+    Typography
+} from "@mui/material";
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Select from '@mui/material/Select';
 import {Evaluator} from "../../constants/enums";
-
-export type FormProps = {}
+import {situations} from "../../constants/constants";
 
 const marks = [
     {
@@ -91,6 +98,30 @@ export default function Evaluation({
                             max={5}
                         />
                     </FormControl>
+                    <FormGroup className={'margin-top-10'}>
+                        <Typography gutterBottom>Good Behaviour</Typography>
+                        {Object.keys(situations.good).map(situationKey => {
+                            const situation: string = get(situations, ['good', situationKey]);
+                            return (
+                                <FormControlLabel className={'margin-left-20'}
+                                      control={<Checkbox
+                                          onChange={(event, value) => setFieldValue(`bad.${situationKey}`, value)}
+                                      />} label={situation} />
+                            );
+                        })}
+                    </FormGroup>
+                    <FormGroup className={'margin-top-10'}>
+                        <Typography gutterBottom>Bad Behaviour</Typography>
+                        {Object.keys(situations.bad).map(situationKey => {
+                            const situation: string = get(situations, ['bad', situationKey]);
+                            return (
+                                <FormControlLabel className={'margin-left-20'}
+                                                  control={<Checkbox
+                                                      onChange={(event, value) => setFieldValue(`bad.${situationKey}`, value)}
+                                                  />} label={situation} />
+                            );
+                        })}
+                    </FormGroup>
                     <FormControl className={'margin-top-20'}>
                         <LoadingButton variant="contained" type={"submit"} loading={isSubmitting}>Submit</LoadingButton>
                     </FormControl>
