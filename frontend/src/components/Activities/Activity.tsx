@@ -7,6 +7,8 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import LoadingButton from "@mui/lab/LoadingButton";
 import {activity} from "../../constants/constants";
+import {Evaluator} from "../../constants/enums";
+import {get} from "lodash";
 
 export interface ActivityValues {
     activity?: string;
@@ -28,6 +30,26 @@ export default function Activity({
             <Paper elevation={3} style={{padding: "20px", marginTop: "30px"}}>
                 <Form onSubmit={handleSubmit}>
                     <FormControl fullWidth>
+                        <InputLabel id="evaluator-label">Evaluator</InputLabel>
+                        <Select
+                            labelId="evaluator-label"
+                            id="evaluator"
+                            name={'evaluator'}
+                            label="Age"
+                            onChange={handleChange}
+                            required={true}
+                            defaultValue={''}
+                        >
+                            {Object.keys(Evaluator as { [s: number]: string }).map((key) => {
+                                const value:string = get(Evaluator, key, '');
+
+                                return (
+                                    value && <MenuItem value={value} key={key}>{key}</MenuItem>
+                                );
+                            })}
+                        </Select>
+                    </FormControl>
+                    <FormControl fullWidth className={'margin-top-10'}>
                         <InputLabel id="evaluator-label">Activity</InputLabel>
                         <Select
                             labelId="evaluator-label"

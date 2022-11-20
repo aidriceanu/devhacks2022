@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const express = require('express');
 const baucis = require('baucis');
 
+console.log(process.env.DB_URI);
 mongoose.connect(process.env.DB_URI);
 
 const EvaluatorModel = require('./model/Evaluator.js');
