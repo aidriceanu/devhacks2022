@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: devhacks2022/frontend
+    depends_on:
+      - api
+    environment:
+      REACT_APP_API_HOST: http://127.0.0.1:3001
+    ports:
+      - 8080:80
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    image: devhacks2022/api
+    depends_on:
+      - db
+    environment:
+      SERVER_PORT: 3001
+      DB_URI: mongodb://devhacks:devhacks@127.0.0.1:27017
+    ports:
+      - 3000:3000
+  db:
+    image: mongo:6.0.3
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: devhacks
+      MONGO_INITDB_ROOT_PASSWORD: devhacks
+      MONGO_INITDB_DATABASE: devhacks
+    volumes:
+      - ./db:/data/db
+    ports:
+      - 27017:27017
+  grafana:
+    image: grafana/grafana:9.2.5
+    restart: always
+    depends_on:
+      - prometheus
+    volumes:
+      - ./grafana/datasources:/etc/grafana/provisioning/datasources
+      - grafana_data:/var/lib/grafana
+    ports:
+      - 3002:3000
+  prometheus:
+    image: bitnami/prometheus:2.40.2
+    restart: always
+    volumes:
+      - prometheus_data:/opt/bitnami/prometheus/data
+    ports:
+      - 9090:9090
+
+volumes:
+  grafana_data: {}
+  prometheus_data: {}
